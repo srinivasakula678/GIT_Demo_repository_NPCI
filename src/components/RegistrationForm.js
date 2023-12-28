@@ -1,14 +1,13 @@
 // src/components/RegistrationForm.js
 import React, { useState } from 'react';
-//import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
 
-//const RegistrationForm = () => {
-  //const history = useHistory();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -29,7 +28,7 @@ const RegistrationForm = () => {
     // Perform registration logic if needed
     console.log('Registered!', formData);
     // Redirect to the login page
-    history.push('/login');
+    History.push('/login');
   };
 
   return (

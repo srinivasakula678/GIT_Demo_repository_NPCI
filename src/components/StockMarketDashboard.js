@@ -1,12 +1,13 @@
 // src/components/StockMarketDashboard.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Line } from 'react-chartjs-2';
 
 const StockMarketDashboard = () => {
   const [stockData, setStockData] = useState([]);
 
   useEffect(() => {
-    // Replace this URL with a real stock market API endpoint
+    // Placeholder API endpoint
     const apiUrl = 'https://api.example.com/stocks';
 
     const fetchData = async () => {
@@ -26,29 +27,23 @@ const StockMarketDashboard = () => {
     return () => clearInterval(intervalId);
   }, []); // Empty dependency array ensures the effect runs only once
 
+  const chartData = {
+    labels: stockData.map((data) => data.timestamp),
+    datasets: [
+      {
+        label: 'Stock Price',
+        data: stockData.map((data) => data.price),
+        fill: false,
+        borderColor: 'rgba(75,192,192,1)',
+        lineTension: 0.1,
+      },
+    ],
+  };
+
   return (
     <div>
-      <h2>Real-Time Stock Market Dashboard</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Price</th>
-            {/* Add more columns as needed */}
-          </tr>
-        </thead>
-        <tbody>
-          {stockData.map((stock) => (
-            <tr key={stock.symbol}>
-              <td>{stock.symbol}</td>
-              <td>{stock.name}</td>
-              <td>{stock.price}</td>
-              {/* Display more data as needed */}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h2>Stock Market Dashboard</h2>
+      <Line data={chartData} />
     </div>
   );
 };
