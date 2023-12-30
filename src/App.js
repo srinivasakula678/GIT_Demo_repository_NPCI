@@ -1,13 +1,21 @@
 // src/App.js
 import React from 'react';
-import StockList from './components/StockList';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RegistrationForm from './components/RegistrationForm';
+import LoginForm from './components/LoginForm';
+import StockMarketDashboard from './components/StockMarketDashboard';
 
 function App() {
   return (
-    <div>
-      <h1>Stock Market Dashboard</h1>
-      <StockList />
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/dashboard" element={<StockMarketDashboard />} />
+          <Route path="/" element={<RegistrationForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
